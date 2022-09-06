@@ -1,0 +1,18 @@
+---
+- hosts: wordpress
+  tasks:
+    - name: 'Instalacao do PHP'
+      apt:
+        name: php
+        state: latest
+      become: yes
+    - name: 'Instalacao do Apache2'
+      apt:
+        name: apache2
+        state: latest
+      become: yes
+    - name: 'Instalacao do modphp'
+      apt:
+        name: libapache2-mod-php
+        state: latest
+      become: yes
