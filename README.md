@@ -22,3 +22,5 @@
 - Caso queira criar containers usando docker, acesse o diretorio [docker](/docker/) e use o [Dockerfile](/docker/Dockerfile)
 
 - Caso queira usar o [Vagrant](https://www.vagrantup.com/downloads), você também precisará instalar o [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+
+- Use as instruções para usar o [Vagrant](./vagrant.md)
