@@ -22,3 +22,13 @@
 - Caso queira criar containers usando docker, acesse o diretorio [docker](/docker/) e use o [Dockerfile](/docker/Dockerfile)
 
 - Caso queira usar o vagrant, acesse as instruções [Vagrant](./vagrant.md)
+
+2. Comando para executar o ansible no host
+```
+ansible-playbook provisioning.yml -u vagrant -i hosts --private-key .vagrant/machines/m1/virtualbox/private_key
+```
+
+- ansible-playbook: comando que executa um manual de instruções informados por um arquivo .yml
+- -u : usuário da máquina virtual ou container que executará a ação
+- -i : arquivo de origem com os alvos que serão modificados
+- --private-key : caminho da chave privada que o ansible usará na execução da ação

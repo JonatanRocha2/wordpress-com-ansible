@@ -1,18 +1,11 @@
 ---
 - hosts: wordpress
   tasks:
-    - name: 'Instalacao do PHP'
+    - name: 'Instala pacotes do sistema operacional'
       apt:
-        name: php
-        state: latest
-      become: yes
-    - name: 'Instalacao do Apache2'
-      apt:
-        name: apache2
-        state: latest
-      become: yes
-    - name: 'Instalacao do modphp'
-      apt:
-        name: libapache2-mod-php
+        name:
+        - php
+        - apache2
+        - libapache2-mod-php
         state: latest
       become: yes
