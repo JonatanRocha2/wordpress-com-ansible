@@ -25,10 +25,8 @@
 
 2. Comando para executar o ansible no host
 ```
-ansible-playbook provisioning.yml -u vagrant -i hosts --private-key .vagrant/machines/m1/virtualbox/private_key
+ansible-playbook provisioning.yml -i hosts 
 ```
 
 - ansible-playbook: comando que executa um manual de instruções informados por um arquivo .yml
-- -u : usuário da máquina virtual ou container que executará a ação
 - -i : arquivo de origem com os alvos que serão modificados
-- --private-key : caminho da chave privada que o ansible usará na execução da ação
