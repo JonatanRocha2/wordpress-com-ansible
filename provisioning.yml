@@ -1,16 +1,33 @@
 ---
 - hosts: wordpress
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+
   tasks:
     - name: 'Instala pacotes do sistema operacional'
       apt:
         name:
-        - php
         - apache2
-        - libapache2-mod-php
-        - php-ssh2
-        - python3-mysqldb
         - mariadb-server
         - mariadb-client
+        - python3-mysqldb
+        - php
+        - php-ssh2
+        - php-mysql
+        - php-common
+        - php-mysql
+        - php-tidy
+        - php-xml
+        - php-xmlrpc
+        - php-mbstring
+        - php-memcached
+        - php-curl
+        - php-zip
+        - libapache2-mod-php
         state: latest
       become: yes
 
@@ -30,17 +47,16 @@
         state: present
       become: yes
 
-# Descomente a task abaixo caso irá executar o download do wordpress a primeira vez
-
-#    - name: 'Baixa o arquivo de instalacao do Wordpress'
-#      get_url: 
-#        url: 'https://wordpress.org/latest.tar.gz'
-#        dest: '/tmp/wordpress.tar.gz'
+    - name: 'Baixa o arquivo de instalacao do Wordpress'
+      get_url: 
+        url: 'https://wordpress.org/wordpress-5.0.tar.gz'
+        dest: '/tmp/wordpress.tar.gz'
     
     - name: 'Descomparta o Wordpress'
       unarchive: 
         src: '/tmp/wordpress.tar.gz'
         dest: '/var/www'
+        mode: 0755
         remote_src: yes
       become: yes
 
@@ -51,7 +67,7 @@
         remote_src: yes
       become: yes
 
-    - name: 'Configura o wp-config'
+    - name: 'Configura o wp-config.php'
       replace: 
         path: '/var/www/wordpress/wp-config.php'
         regexp: '{{ item.regex }}'
@@ -60,4 +76,12 @@
           - { regex: 'database_name_here', value: 'wordpress_db'}
           - { regex: 'username_here', value: 'wordpress_user'}
           - { regex: 'password_here', value: '12345'}
+      become: yes
+
+    - name: 'Configura o apache para rodar o wordpress'
+      copy: 
+        src: 'files/000-default.conf'
+        dest: '/etc/apache2/sites-available/000-default.conf'
+      notify: 
+        - restart apache
       become: yes
