@@ -14,3 +14,11 @@
 <a href="https://www.vagrantup.com/docs" alt="Vagrant Documentation">
 <img src="https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white"/>
 </a>
+
+## Criando um ambiente de desenvolvimento
+
+1. Escolha a melhor forma de provisionar seu ambiente de desenvolvimento: Docker ou Vagrant.
+
+Caso queira criar containers usando docker, acesse o diretorio [docker](/docker/)
+
+Caso queira usar o [Vagrant](https://www.vagrantup.com/downloads), você também precisará instalar o [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
