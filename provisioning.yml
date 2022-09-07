@@ -7,5 +7,25 @@
         - php
         - apache2
         - libapache2-mod-php
+        - php-ssh2
+        - python3-mysqldb
+        - mariadb-server
+        - mariadb-client
         state: latest
+      become: yes
+
+    - name: 'Cria o banco do MySQL'
+      mysql_db: 
+        name: wordpress_db
+        login_user: root
+        state: present
+      become: yes
+
+    - name: 'Cria o usuário do MySQL'
+      mysql_user:
+        login_user: root
+        name: wordpress_user
+        password: 12345
+        priv: 'wordpress_db.*:ALL'
+        state: present
       become: yes
