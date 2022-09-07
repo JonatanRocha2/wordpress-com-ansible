@@ -1,5 +1,5 @@
 ---
-- hosts: wordpress
+- hosts: all
   handlers:
     - name: restart apache
       service:
@@ -7,13 +7,18 @@
         state: restarted
       become: yes
 
+    - name: start mysql
+      service:
+        name: mysql
+        state: started
+      become: yes  
+
   tasks:
     - name: 'Instala pacotes do sistema operacional'
       apt:
         name:
         - apache2
         - mariadb-server
-        - mariadb-client
         - python3-mysqldb
         - php
         - php-ssh2
@@ -84,4 +89,5 @@
         dest: '/etc/apache2/sites-available/000-default.conf'
       notify: 
         - restart apache
+        - start mysql
       become: yes

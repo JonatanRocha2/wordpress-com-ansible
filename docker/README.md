@@ -29,3 +29,7 @@ passwd
 ```
 ssh root@[ip_do_container]
 ```
+8. Pode ser necessário adicionar o novo container no arquivo know_hosts
+```
+ssh-keyscan -H [ip_do_container] >> ~/.ssh/known_hosts
+```

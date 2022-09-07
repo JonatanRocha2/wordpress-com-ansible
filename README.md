@@ -30,3 +30,8 @@ ansible-playbook provisioning.yml -i hosts
 
 - ansible-playbook: comando que executa um manual de instruções informados por um arquivo .yml
 - -i : arquivo de origem com os alvos que serão modificados
+
+3. No momento, preciso iniciar o mysql manualmente no container. Estou procurando formas de iniciar o serviço com o ansible.
+```
+service mysql start
+```
