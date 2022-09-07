@@ -1,4 +1,4 @@
-# Usando ansible para automatizar um servidor Wordpress
+# Como automatizar a criação de um servidor Wordpress
 
 ### Tecnologias usadas
 
