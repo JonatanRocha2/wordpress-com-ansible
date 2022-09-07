@@ -15,6 +15,11 @@
 <img src="https://img.shields.io/badge/vagrant-%231563FF.svg?style=for-the-badge&logo=vagrant&logoColor=white"/>
 </a>
 
+
+### WordPress Precisa do PHP!
+
+![WordPress Theme Required PHP Version](https://img.shields.io/wordpress/theme/required-php/%3E=7?style=for-the-badge)
+
 ## Criando um ambiente de desenvolvimento
 
 1. Escolha a melhor forma de provisionar seu ambiente de desenvolvimento: Docker ou Vagrant.
