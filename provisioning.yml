@@ -1,17 +1,11 @@
 ---
-- hosts: all
+- hosts: containers
   handlers:
     - name: restart apache
       service:
         name: apache2
         state: restarted
       become: yes
-
-    - name: start mysql
-      service:
-        name: mysql
-        state: started
-      become: yes  
 
   tasks:
     - name: 'Instala pacotes do sistema operacional'
@@ -34,6 +28,13 @@
         - php-zip
         - libapache2-mod-php
         state: latest
+      become: yes
+
+    - name: 'Garantindo inicialização do MySQL'
+      service:
+        name: mysql
+        state: started
+        enabled: yes
       become: yes
 
     - name: 'Cria o banco do MySQL'
@@ -89,5 +90,4 @@
         dest: '/etc/apache2/sites-available/000-default.conf'
       notify: 
         - restart apache
-        - start mysql
       become: yes
