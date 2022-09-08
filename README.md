@@ -19,10 +19,6 @@
 
 1. Escolha a melhor forma de provisionar seu ambiente de desenvolvimento: Docker ou Vagrant.
 
-- Caso queira criar containers usando docker, acesse o diretorio [docker](/docker/) e use o [Dockerfile](/docker/Dockerfile)
-
-- Caso queira usar o vagrant, acesse as instruções [Vagrant](./vagrant.md)
-
 2. Comando para executar o ansible no host
 ```
 ansible-playbook provisioning.yml -i hosts 
