@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: 'wordpress'
+    ports:
+      - '22'
+      - '80'
+  database:
+    build: .
+    container_name: 'database'
+    ports:
+      - '22'
+      - '3306'

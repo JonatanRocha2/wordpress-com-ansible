@@ -1,34 +1,21 @@
 ---
-- hosts: containers
+# Instalacao do banco de dados
+- hosts: database
+
   handlers:
-    - name: restart apache
+    - name: restart mysql
       service:
-        name: apache2
+        name: mysql
         state: restarted
       become: yes
 
   tasks:
-    - name: 'Instala pacotes do sistema operacional'
+    - name: 'Instala pacotes do MySQL'
       apt:
         name:
-        - apache2
         - mariadb-server
         - python3-mysqldb
-        - php
-        - php-ssh2
         - php-mysql
-        - php-common
-        - php-mysql
-        - php-tidy
-        - php-xml
-        - php-xmlrpc
-        - php-mbstring
-        - php-memcached
-        - php-curl
-        - php-zip
-        - libapache2-mod-php
-        state: latest
-      become: yes
 
     - name: 'Garantindo inicialização do MySQL'
       service:
@@ -51,6 +38,49 @@
         password: 12345
         priv: 'wordpress_db.*:ALL'
         state: present
+      become: yes
+      with_items: 
+        - 'localhost'
+        - '127.0.0.1'
+        - '172.18.0.2'
+        
+    - name: 'Configura MySQL para aceitar conexões remotas'
+      copy:
+        src: 'files/my.cnf'
+        dest: '/etc/mysql/my.cnf'
+      become: yes
+      notify:
+        - restart mysql
+
+# Instalacao da aplicacao
+- hosts: app
+  handlers:
+    - name: restart apache
+      service:
+        name: apache2
+        state: restarted
+      become: yes
+
+  tasks:
+    - name: 'Instala pacotes necessários do PHP'
+      apt:
+        name:
+        - mariadb-server
+        - python3-mysqldb
+        - apache2
+        - php
+        - php-ssh2
+        - php-mysql
+        - php-common
+        - php-tidy
+        - php-xml
+        - php-xmlrpc
+        - php-mbstring
+        - php-memcached
+        - php-curl
+        - php-zip
+        - libapache2-mod-php
+        state: latest
       become: yes
 
     - name: 'Baixa o arquivo de instalacao do Wordpress'
@@ -82,6 +112,7 @@
           - { regex: 'database_name_here', value: 'wordpress_db'}
           - { regex: 'username_here', value: 'wordpress_user'}
           - { regex: 'password_here', value: '12345'}
+          - { regex: 'localhost', value: '172.18.0.2'}
       become: yes
 
     - name: 'Configura o apache para rodar o wordpress'

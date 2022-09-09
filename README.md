@@ -26,3 +26,11 @@ ansible-playbook provisioning.yml -i hosts
 
 - ansible-playbook: comando que executa um manual de instruções informados por um arquivo .yml
 - -i : arquivo de origem com os alvos que serão modificados
+
+3. Corrigindo permissao de acesso da aplicacao ao banco de dados
+
+```
+MariaDB [(none)]> GRANT ALL ON database_name.* to 'database_username'@'10.24.96.5' IDENTIFIED BY 'database_password';
+MariaDB [(none)]> FLUSH PRIVILEGES;
+MariaDB [(none)]> SELECT host FROM mysql.user WHERE user = "database_username";
+```
