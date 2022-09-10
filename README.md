@@ -18,8 +18,12 @@
 <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/>
 </a>
 
-<a href="https://mariadb.com/kb/en/documentation/" alt="Docker Documentation">
+<a href="https://mariadb.com/kb/en/documentation/" alt="MariaDB Documentation">
 <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white"/>
+</a>
+
+<a href="https://developer.wordpress.com/docs/" alt="Wordpress Documentation">
+<img src="https://img.shields.io/badge/Wordpress-21759B?style=for-the-badge&logo=wordpress&logoColor=white"/>
 </a>
 
 
