@@ -1,0 +1,40 @@
+---
+- name: 'Instala pacotes do MySQL'
+  apt:
+    name:
+    - mariadb-server
+    - python3-mysqldb
+    - php-mysql
+
+- name: 'Garantindo inicialização do MySQL'
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes
+
+- name: 'Cria o banco do MySQL'
+  mysql_db: 
+    name: "{{wp_db_name}}"
+    login_user: root
+    state: present
+  become: yes
+
+- name: 'Cria o usuário do MySQL'
+  mysql_user:
+    login_user: root
+    name: {{wp_username}}
+    password: 12345
+    priv: 'wordpress_db.*:ALL'
+    state: present
+  become: yes
+  with_items: 
+    - "{{ wp_host_ip }}"
+    
+- name: 'Configura MySQL para aceitar conexões remotas'
+  copy:
+    src: 'files/my.cnf'
+    dest: '/etc/mysql/my.cnf'
+  become: yes
+  notify:
+    - restart mysql

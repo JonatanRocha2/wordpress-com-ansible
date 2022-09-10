@@ -1,0 +1,21 @@
+---
+- name: 'Instala pacotes necessários do PHP e Apache'
+  apt:
+    name:
+    - mariadb-server
+    - python3-mysqldb
+    - apache2
+    - php
+    - php-ssh2
+    - php-mysql
+    - php-common
+    - php-tidy
+    - php-xml
+    - php-xmlrpc
+    - php-mbstring
+    - php-memcached
+    - php-curl
+    - php-zip
+    - libapache2-mod-php
+    state: latest
+  become: yes
