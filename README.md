@@ -18,6 +18,11 @@
 <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/>
 </a>
 
+<a href="https://mariadb.com/kb/en/documentation/" alt="Docker Documentation">
+<img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white"/>
+</a>
+
+
 ## Criando o ambiente de desenvolvimento
 
 1. Instale o docker e o docker-compose 
