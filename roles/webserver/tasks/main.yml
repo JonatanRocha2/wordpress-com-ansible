@@ -1,7 +1,12 @@
 ---
-- name: 'Instala pacotes necessários do PHP e Apache'
+- name: 'Instala pacotes de dependencia do sistema operacional'
   apt:
-    name:
+    update_cache: yes #atualizando o package list
+    cache_valid_time: 3600 #1 hora
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
     - mariadb-server
     - python3-mysqldb
     - apache2
@@ -17,5 +22,3 @@
     - php-curl
     - php-zip
     - libapache2-mod-php
-    state: latest
-  become: yes
